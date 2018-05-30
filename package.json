@@ -1,0 +1,24 @@
+{
+  "name": "nodetodo",
+  "version": "1.0.0",
+  "description": "node ToDo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dutchbones/nodeoToDo.git"
+  },
+  "keywords": [
+    "node",
+    "to",
+    "do"
+  ],
+  "author": "Daniel Meeusen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dutchbones/nodeoToDo/issues"
+  },
+  "homepage": "https://github.com/dutchbones/nodeoToDo#readme"
+}
