@@ -1,10 +1,23 @@
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
-var data = [];
+//connect to mlab.com mongo database
+mongoose.connect('mongodb://test:whatever1394@ds117495.mlab.com:17495/todo-ninja');
 
+//create database schema (blueprint)
+var todoSchema = new mongoose.Schema({item: String});
+
+var Todo =  mongoose.model('Todo', todoSchema);
+
+var itemOne = Todo({item: 'masterbate'}).save((err) => {
+    if(err) throw err;
+    console.log('item saved');
+});
+
+var data = [{item: 'get milk'}, {item: 'walk dog'}, {item: 'masterbate'}];
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
-module.exports = (app) => {
+module.exports = (app) => { 
 
     app.get('/todo', (req, res) => {
         res.render('todo', {todos: data});
