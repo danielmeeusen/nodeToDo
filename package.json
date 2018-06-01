@@ -2,12 +2,14 @@
   "name": "nodetodo",
   "version": "1.0.0",
   "engines": {
-    "npm": "^5.7.1"
+    "npm": "^5.7.1",
+    "node": "^8.11.1"
   },
   "description": "node ToDo",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
