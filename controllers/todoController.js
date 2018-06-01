@@ -7,32 +7,39 @@ mongoose.connect('mongodb://test:whatever1394@ds117495.mlab.com:17495/todo-ninja
 //create database schema (blueprint)
 var todoSchema = new mongoose.Schema({item: String});
 
+// create db model
 var Todo =  mongoose.model('Todo', todoSchema);
 
-var itemOne = Todo({item: 'masterbate'}).save((err) => {
-    if(err) throw err;
-    console.log('item saved');
-});
-
-var data = [{item: 'get milk'}, {item: 'walk dog'}, {item: 'masterbate'}];
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = (app) => { 
 
     app.get('/todo', (req, res) => {
-        res.render('todo', {todos: data});
+        // get data from mongodb and pass it to the view
+        Todo.find({}, (err, data) => {
+            if(err) throw err;
+            res.render('todo', {todos: data});
+        });
     });
 
     app.post('/todo', urlencodedParser, (req, res) => {
-        data.push(req.body);
-        res.json(data);
+        // get data from view and add it to mongodb
+        var newTodo = Todo(req.body).save( (err, data) => {
+            if(err) throw err;
+            // console.log(data);
+            res.json(data);
+        });
     });
 
     app.delete('/todo/:item', (req, res) => {
-        data = data.filter( (todo) => {
-            return todo.item.replace(/ /g, '-') !== req.params.items;
+        // delete requested from mongodb
+        var toDelete = Todo.find( {item: req.params.item} );
+        // console.log('"'+req.params.item+'"');
+        Todo.find( {item: req.params.item} ).remove( (err, data) => {
+            if(err) throw err;
+            // console.log(data);
+            res.json(data);
         });
-        res.json(data);
     });
 
 };
