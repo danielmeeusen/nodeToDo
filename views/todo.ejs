@@ -23,7 +23,7 @@
         </form>
         <ul>
             <% for(i=0; i < todos.length; i++) { %>
-                <li><%= todos[i].item %></li>
+                <li data-id='<%= todos[i].id %>'><%= todos[i].item %></li>
             <% } %>
         </ul>
     </div>

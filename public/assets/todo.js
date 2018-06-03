@@ -16,14 +16,16 @@ $(document).ready(function(){
         location.reload();
     });
   
-    $('li').on('click', function(){
-        var item = $(this).text();
+    $('li').on('click', (e) => {
+        $target = $(e.target);
+        const id = $target.attr('data-id');
         $.ajax({
           type: 'DELETE',
-          url: '/todo/' + item,
-          success: function(data){
+          url: '/todo/'+id,
+          success: (res) => {
             //do something with the data via front-end framework
-          }
+          },
+          error: (err) => { throw err; }
         });
         location.reload();
     });
