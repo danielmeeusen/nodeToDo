@@ -10,10 +10,9 @@ $(document).ready(function(){
           url: '/todo',
           data: todo,
           success: function(data){
-            //do something with the data via front-end framework
+            location.reload();
           }
         });
-        location.reload();
     });
   
     $('li').on('click', (e) => {
@@ -23,11 +22,10 @@ $(document).ready(function(){
           type: 'DELETE',
           url: '/todo/'+id,
           success: (res) => {
-            //do something with the data via front-end framework
+            location.reload();
           },
           error: (err) => { throw err; }
         });
-        location.reload();
     });
   
   });
