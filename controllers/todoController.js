@@ -12,7 +12,7 @@ db.on('error', (err) => {
 
 //check connection
 db.once('open', () => {
-    console.log('connection to MongoDB')
+    console.log('Connected to MongoDB')
 })
 
 //create database schema (blueprint)
